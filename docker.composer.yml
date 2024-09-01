@@ -1,0 +1,19 @@
+```
+version: '3'
+
+services:
+  opencast:
+    image: opencast/opencast:latest
+    ports:
+      - "8080:8080"
+    depends_on:
+      - lazy_indexer
+    environment:
+      - LAZY_INDEXER_ENABLED=true
+      - LAZY_INDEXER_URL=http://lazy_indexer:8081
+
+  lazy_indexer:
+    image: opencast/lazy-indexer:latest
+    ports:
+      - "8081:8081"
+```
